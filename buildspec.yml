@@ -4,3 +4,4 @@ phases:
   build:
     commands:
       - echo "buildspec works"
+      - aws s3 cp .\index.html s3://luit-gold-beta/index.html --acl public-read
