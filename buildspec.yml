@@ -3,5 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - echo "buildspec works"
-      - aws s3 cp .\index.html s3://luit-gold-beta/index.html --acl public-read
+      - aws s3 cp index.html s3://luit-gold-beta/index.html --acl public-read
+
+      - if [ "$CODEBUILD_WEBHOOK_EVENT" == "PULL_REQUEST_MERGED" ]  ; 
+        then aws s3 cp index.html s3://luit-gold-prod/index.html --acl public-read; fi
